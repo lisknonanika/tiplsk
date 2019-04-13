@@ -1,11 +1,5 @@
 {
     "mode": "test",
-    "lisk": {
-        "address": "",
-        "passphrase": "",
-        "secondPassphrase": "",
-        "transactionLimit": 100
-    },
     "mongo": {
         "url": "",
         "db": "",

@@ -14,6 +14,7 @@ const define = (name, value) => {
 define('mode', config.mode);
 define('coreUrl', 'http://localhost:3000/core/');
 define('blacklist', ["1052365035895283712"]);
+define('blacklistSource', ["PEING"]);
 
 // MongoDB Setting
 define('mongo', config.mongo);
@@ -28,7 +29,6 @@ define('TwitterClient', new twitter({consumer_key: config.twitter.apiKey,
                                      access_token_secret: config.twitter.accessTokenSecret}));
 
 const regexp = {
-    "receivekey": new RegExp(/(^[0-9a-zA-Z]{12,12}$)|(^[0-9a-zA-Z]{24,24}$)/),
     "tip": new RegExp(/(^|\s+)(@|＠)tiplsk\s+(tip:e|tip|send|チップ)\s+(@|＠)[0-9a-zA-Z_]{5,15}\s+([1-9][0-9]{0,4}|0)(\.\d{1,5})?($|\s)/i),
     "tip_s": new RegExp(/(^|\s+)(@|＠)tiplsk\s+(tip:e|tip|send|チップ)\s+([1-9][0-9]{0,4}|0)(\.\d{1,5})?($|\s)/i),
     "balance": new RegExp(/(^|\s+)(@|＠)tiplsk\s+(balance:e|balance|残高|所持金)($|\s)/i),
@@ -39,27 +39,10 @@ const regexp = {
     "webaccess": new RegExp(/(^|\s+)(@|＠)tiplsk\s+(webaccess:e|webaccess)($|\s)/i)
 }
 define('regexp', regexp);
-
-const filter = {
-    track: "@tiplsk tip,@tiplsk send,@tiplsk チップ," +
-           "@tiplsk balance,@tiplsk 残高,@tiplsk 所持金," +
-           "@tiplsk deposit,@tiplsk 入金," +
-           "@tiplsk withdraw,@tiplsk 出金,@tiplsk 送金," +
-           "@tiplsk followme,@tiplsk フォローして," +
-           "@tiplsk history,@tiplsk 履歴," +
-           "@tiplsk webaccess," +
-           "＠tiplsk tip,＠tiplsk send,＠tiplsk チップ," +
-           "＠tiplsk balance,＠tiplsk 残高,＠tiplsk 所持金," +
-           "＠tiplsk deposit,＠tiplsk 入金," +
-           "＠tiplsk withdraw,＠tiplsk 出金,＠tiplsk 送金," +
-           "＠tiplsk followme,＠tiplsk フォローして," +
-           "＠tiplsk history,＠tiplsk 履歴," +
-           "＠tiplsk webaccess"
-}
-define('filter', filter);
+define('filter', {track: "@tiplsk,＠tiplsk"});
 
 const liskExplorer = config.mode === 'test'? "https://testnet-explorer.lisk.io/tx/":
-                                           "https://explorer.lisk.io/tx/";
+                                             "https://explorer.lisk.io/tx/";
 const message = {
     "tipOk": ["{0} さんへ\n\n{1} さんから {2} チップが届きました！",
               "{0} さんへ\n\n{1} さんから {2} だーよー！",
@@ -150,14 +133,7 @@ const message = {
     "depositDM_e": ["When depositing LSK, please enter the issued KEY in the reference field of the transaction.\n" +
                     "・KEY：{0}\n・ADDRESS：{1}\n\n" +
                     "[Notes]\nIf you forget to enter the KEY or wrong it, I may not be able to cope."],
-    "random": ["\n",
-               "\n\nチップコマンドで「チップ」を使うと、円換算されるって知ってました？",
-               "\n\n所持金確認コマンドで「残高」を使うと、円換算されるって知ってました？",
-               "\n\n所持金確認コマンドで「所持金」を使うと、円換算されるって知ってました？",
-               "\n\ntiplskって？：https://lisknonanika.github.io/tiplisk/",
-               "\n\ntiplskの使い方：https://lisknonanika.github.io/tiplisk/howto.html"],
-    "random_e": ["\n",
-                 "\n\nwhat is tiplsk?：https://lisknonanika.github.io/tiplisk/",
-                 "\n\nhow to tiplsk：https://lisknonanika.github.io/tiplisk/howto.html"]
+    "howto": ["\n",
+              "\n\nhow to: https://lisknonanika.github.io/tiplisk/howto.html"]
 }
 define('message', message);
