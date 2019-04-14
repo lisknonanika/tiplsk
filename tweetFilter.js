@@ -2,7 +2,7 @@ const config = require('./config');
 const utils = require('./utils');
 const allocate = require('./allocate');
 
-module.exports = function(){
+module.exports = () => {
     config.TwitterClient.stream('statuses/filter', config.filter)
     .on("start", _response => {
         console.log(`[${utils.getDateTimeString()}] [tweetFilter] start`);
