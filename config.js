@@ -98,9 +98,9 @@ const message = {
     "depositDM": ["入金の際は発行されたKEYをトランザクションのメモ欄に入力してください。\n" +
                   "入力のし忘れ、間違いは対応できない可能性があるのでご注意ください。\n" +
                   "・KEY：{0}\n・入金先：{1}"],
-    "receiveDM": ["Received {1}LSK.\n" +
-                  "Please confirm the approval status with Lisk Explorer etc.\n" +
-                  liskExplorer + "{2}"],
+    "receive": ["Confirmed your deposit of {0}LSK.\n" +
+                "Please confirm the approval status with Lisk Explorer etc.\n" +
+                liskExplorer + "{1}"],
     "tipOk_e": ["Hi {0}!\n\n{1} sent you {2}!",
                 "Hi {0}!\n\n{1} sent you {2}!\nIs today your anniversary?",
                 "Hi {0}!\n\n{1} sent you {2}!\ngood for you!",

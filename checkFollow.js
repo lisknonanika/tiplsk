@@ -22,7 +22,7 @@ const refleshFriendsCtrl = async() => {
     const friendsCtrl = await friendsCollection.find({});
     for (let item of friendsCtrl) {
         twitterIds.push(item.twitterId);
-        if (item.friend === 1 && friends.indexOf(item.twitterId) < 0) {
+        if ((item.friend === 1 && friends.indexOf(item.twitterId) < 0) || followers.indexOf(item.twitterId) < 0) {
             await friendsCollection.delete({twitterId: item.twitterId});
             twitterIds.pop();
         } else if (item.friend === 0 && friends.indexOf(item.twitterId) >= 0) {
