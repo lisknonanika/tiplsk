@@ -1,5 +1,8 @@
 {
     "mode": "test",
+    "lisk": {
+        "address": ""
+    },
     "mongo": {
         "url": "",
         "db": "",

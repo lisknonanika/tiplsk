@@ -1,5 +1,8 @@
 {
     "mode": "release",
+    "lisk": {
+        "address": ""
+    },
     "mongo": {
         "url": "",
         "db": "",

@@ -11,7 +11,7 @@ module.exports = async() => {
     if (!data || !data.result) return;
     
     for (item of data.data) {
-        const text = utils.getMessage(config.message.receive, [item.amount, item.trxId]);
+        const text = utils.getMessage('receive', [item.amount, item.trxId]);
         await dm(item.twitterId, text);
     }
 }

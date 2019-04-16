@@ -7,5 +7,5 @@ module.exports = async(amount) => {
         url: 'https://coincheck.com/api/rate/lsk_jpy',
         json: true
     });
-    return utils.multiply(amount, data.rate);
+    return utils.num2str(utils.multiply(amount, data.rate), 3);
 }

@@ -36,8 +36,8 @@ const updateFriendsCtrl = async() => {
         if (twitterIds.indexOf(twitterId)) return;
         const user = await userShow(twitterId);
         if (user && user.protected && !user.following && !user.follow_request_sent) {
-            await friendsCollection.update({twitterId: twitterId}, {$set:{twitterId: twitterId, friend: 1}});
             await follow(twitterId);
+            await friendsCollection.update({twitterId: twitterId}, {$set:{twitterId: twitterId, friend: 1}});
         } else {
             await friendsCollection.update({twitterId: twitterId}, {$set:{twitterId: twitterId, friend: 0}});
         }

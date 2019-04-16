@@ -13,8 +13,11 @@ const define = (name, value) => {
 // App Setting
 define('mode', config.mode);
 define('coreUrl', 'http://localhost:3000/core/');
-define('blacklist', ["1052365035895283712"]);
-define('blacklistSource', ["PEING"]);
+define('blacklist', ['1052365035895283712']);
+define('blacklistSource', ['PEING']);
+
+// Lisk Setting
+define('lisk', config.lisk);
 
 // MongoDB Setting
 define('mongo', config.mongo);
@@ -41,76 +44,72 @@ const regexp = {
 define('regexp', regexp);
 define('filter', {track: "@tiplsk,＠tiplsk"});
 
-const liskExplorer = config.mode === 'test'? "https://testnet-explorer.lisk.io/tx/":
-                                             "https://explorer.lisk.io/tx/";
+const liskExplorer = config.mode === 'test'? "https://testnet-explorer.lisk.io/tx/": "https://explorer.lisk.io/tx/";
 const message = {
-    "tipOk": ["{0} さんへ\n\n{1} さんから {2} チップが届きました！",
-              "{0} さんへ\n\n{1} さんから {2} だーよー！",
-              "{0} さんへ\n\n{1} さんから {2} 届いていますよ？",
-              "{0} さんへ\n\n{1} さんからチップだよ！\n( ・ω・)つ【{2}】",
-              "{0} さんへ\n\n{1} さんからです！\n( ・ω・)つ【{2}】",
-              "{0} さんへ\n\n{1} さんが {2} チップをくれたみたい。",
-              "{0} さんへ\n\n{1} さんが {2} チップをくれたよ！",
-              "{0} さんへ\n\n{1} さんが {2} くれましたよ！",
-              "{0} さんへ\n\n{1} さんが {2} くれるみたいですよ！",
-              "{0} さんへ\n\n{1} さんが {2} くれましたー！",
-              "{0} さんへ\n\n{1} さんが {2} くれましたー！\nでも、なんででしょうね？",
-              "{0} さんへ\n\n{1} さんが {2} くれたよ？\nやったね！",
-              "{0} さんへ\n\n{1} さんがあなたにって {2} くれましたよ？\n今日は何かのお祝いですか？",
-              "{0} さんへ\n\n{2} {1}さんがくれたみたい。\nやったね！",
-              "{0} さんへ\n\n{2} が {1} さんから届きました！",
-              "{0} さんへ\n\nなんと！\n{1} さんが {2} くれましたよ！",
-              "{0} さんへ\n\nやったやん！\n{1} さんから {2} 届いたで！",
-              "{0} さんへ\n\nやったね！\n{1} さんから {2} 届いたよ！",
-              "{0} さんへ\n\nやったね！\n{1} さんが {2} くれるんだって！",
-              "{0} さんへ\n\nどうぞ！\n( ・ω・)つ【{2}】\n{1} さんからです。",
-              "{0} さんへ\n\nどうぞ！\n{1} さんからだよ！\n( ・ω・)つ【{2}】",
-              "{0} さんへ\n\nおぉ！？\n{1} さんが {2} くれたよ！",
-              "{0} さんへ\n\nおぉ！？\n{1} さんから {2} 届いたよ！"
-            ],
-    "tipError": ["残高不足のためチップを渡せませんでした。",
-                 "残高が不足しているみたいですよ？",
-                 "残高不足です〜。",
-                 "残高が足りないよ～。",
-                 "ごめんなさい！\n残高が足りない時はチップを渡せないんです！",
-                 "残高不足みたいですけど、間違っちゃいましたか？",
-                 "残高不足なので、チップを渡せません。",
-                 "残高が足りない時はチップ渡せないんです。",
-                 "チップむーりー。\n残高足りないよ～。",
-                 "ちょいちょい！\n残高より多く渡せへんで！",
-                 "ごめんなぁ。。\n残高不足みたいやわぁ。。"],
-    "withdrawDM": ["{0}LSK を {1} へ送金しました。\n" +
-                   "承認状況はLisk Explorer等で確認してください。\n" +
-                   liskExplorer + "{2}"],
-    "withdrawError": ["残高不足のため出金できませんでした。",
-                      "残高不足です〜。",
-                      "残高が足りないよ～。",
-                      "出金できないみたい。\nLiskの手数料もあるから注意してね？",
-                      "出金できないみたい。\n出金時はLiskの手数料がかかるから注意してね？",
-                      "ごめんなさい！\n残高より多い枚数は出金できないんです！",
-                      "ん？間違っちゃいましたか？\n残高が足りないみたいですよ？",
-                      "出金したい枚数、持ってないみたいだよ？",
-                      "出金？\nムリムリ",
-                      "出金するにはちょーっと足りひんみたいやわぁ。。",
-                      "ごめんなぁ。。\n残高たりひんみたいやわぁ。。"],
-    "balanceDM": ["残高は {0} です。\n出金時はLiskの送金手数料がかかるのでご注意ください。",
-                  "残高は {0} だよ！\n出金するときはLiskの送金手数料がかかるから注意してね？"],
-    "depositDM": ["入金の際は発行されたKEYをトランザクションのメモ欄に入力してください。\n" +
-                  "入力のし忘れ、間違いは対応できない可能性があるのでご注意ください。\n" +
-                  "・KEY：{0}\n・入金先：{1}"],
-    "receive": ["Confirmed your deposit of {0}LSK.\n" +
-                "Please confirm the approval status with Lisk Explorer etc.\n" +
-                liskExplorer + "{1}"],
-    "tipOk_e": ["Hi {0}!\n\n{1} sent you {2}!",
-                "Hi {0}!\n\n{1} sent you {2}!\nIs today your anniversary?",
-                "Hi {0}!\n\n{1} sent you {2}!\ngood for you!",
-                "Hi {0}!\n\nYou got {2}!\nfrom {1}.",
-                "Hi {0}!\n\nWow!\nYou got {2} from {1}.",
-                "Hello {0}!\n\n{1} sent you {2}!",
-                "Hello {0}!\n\n{1} sent you {2}!\nIs today your anniversary?",
-                "Hello {0}!\n\n{1} sent you {2}!\ngood for you!",
-                "Hello {0}!\n\nYou got {2}!\nfrom {1}."],
-    "tipError_e": ["You do not have enough LSK..",
+    "tip"       : ["{0} さんへ\n\n{1} さんから {2} チップが届きました！",
+                   "{0} さんへ\n\n{1} さんから {2} だーよー！",
+                   "{0} さんへ\n\n{1} さんから {2} 届いていますよ？",
+                   "{0} さんへ\n\n{1} さんからチップだよ！\n( ・ω・)つ【{2}】",
+                   "{0} さんへ\n\n{1} さんからです！\n( ・ω・)つ【{2}】",
+                   "{0} さんへ\n\n{1} さんが {2} チップをくれたみたい。",
+                   "{0} さんへ\n\n{1} さんが {2} チップをくれたよ！",
+                   "{0} さんへ\n\n{1} さんが {2} くれましたよ！",
+                   "{0} さんへ\n\n{1} さんが {2} くれるみたいですよ！",
+                   "{0} さんへ\n\n{1} さんが {2} くれましたー！",
+                   "{0} さんへ\n\n{1} さんが {2} くれましたー！\nでも、なんででしょうね？",
+                   "{0} さんへ\n\n{1} さんが {2} くれたよ？\nやったね！",
+                   "{0} さんへ\n\n{1} さんがあなたにって {2} くれましたよ？\n今日は何かのお祝いですか？",
+                   "{0} さんへ\n\n{2} {1}さんがくれたみたい。\nやったね！",
+                   "{0} さんへ\n\n{2} が {1} さんから届きました！",
+                   "{0} さんへ\n\nなんと {1} さんが {2} くれましたよ！",
+                   "{0} さんへ\n\nやったやん！ {1} さんから {2} 届いたで！",
+                   "{0} さんへ\n\nやったね！ {1} さんから {2} 届いたよ！",
+                   "{0} さんへ\n\nやったね！ {1} さんが {2} くれるんだって！",
+                   "{0} さんへ\n\n( ・ω・)つ【{2}】\nどうぞ！ {1} さんからです。",
+                   "{0} さんへ\n\n{1} さんからだよ！\n( ・ω・)つ【{2}】",
+                   "{0} さんへ\n\nおぉ！？ {1} さんが {2} くれたよ！",
+                   "{0} さんへ\n\nおぉ！？ {1} さんから {2} 届いたよ！"],
+    "tip_e"     : ["Hi {0}!\n\n{1} sent you {2}!",
+                   "Hi {0}!\n\n{1} sent you {2}!\nIs today your anniversary?",
+                   "Hi {0}!\n\n{1} sent you {2}!\ngood for you!",
+                   "Hi {0}!\n\nYou got {2}!\nfrom {1}.",
+                   "Hi {0}!\n\nWow!\nYou got {2} from {1}.",
+                   "Hello {0}!\n\n{1} sent you {2}!",
+                   "Hello {0}!\n\n{1} sent you {2}!\nIs today your anniversary?",
+                   "Hello {0}!\n\n{1} sent you {2}!\ngood for you!",
+                   "Hello {0}!\n\nYou got {2}!\nfrom {1}."],
+    "withdraw"  : ["{0}LSK を {1} へ送金しました。(手数料:{2}LSK)\n\n" +
+                   "承認状況はLisk Explorer等で確認してください。\n" + liskExplorer + "{3}"],
+    "withdraw_e": ["Sent {0}LSK to {1}.(fee:{2}LSK)\n\n" +
+                   "Please confirm the approval status with Lisk Explorer etc.\n" + liskExplorer + "{2}"],
+    "balance"   : ["残高は {0} です。\n出金時はLiskの送金手数料がかかるのでご注意ください。",
+                   "残高は {0} だよ！\n出金するときはLiskの送金手数料がかかるから注意してね？"],
+    "balance_e" : ["You have {0}!\nIf you transfer LSK to your Lisk address, a fee will be charged."],
+    "deposit"   : ["入金の際は発行されたKEYをトランザクションのメモ欄に入力してください。\n" +
+                   "入力のし忘れ、間違いは対応できない可能性があるのでご注意ください。\n" +
+                   "・KEY：{0}\n・入金先：{1}"],
+    "deposit_e" : ["When depositing LSK, please enter the issued KEY in the reference field of the transaction.\n" +
+                   "・KEY：{0}\n・ADDRESS：{1}\n\n" +
+                   "[Notes]\nIf you forget to enter the KEY or wrong it, I may not be able to cope."],
+    "receive"   : ["Confirmed your deposit of {0}LSK.\nPlease confirm the approval status with Lisk Explorer etc.\n" + liskExplorer + "{1}"],
+    "howto"     : ["\n",
+                   "\n\nhow to: https://lisknonanika.github.io/tiplisk/howto.html"]
+}
+define('message', message);
+
+const errorMessage = {
+    "tip"       : ["残高不足のためチップを渡せませんでした。",
+                   "残高が不足しているみたいですよ？",
+                   "残高不足です〜。",
+                   "残高が足りないよ～。",
+                   "ごめんなさい！\n残高が足りない時はチップを渡せないんです！",
+                   "残高不足みたいですけど、間違っちゃいましたか？",
+                   "残高不足なので、チップを渡せません。",
+                   "残高が足りない時はチップ渡せないんです。",
+                   "チップむーりー。\n残高足りないよ～。",
+                   "ちょいちょい！\n残高より多く渡せへんで！",
+                   "ごめんなぁ。。\n残高不足みたいやわぁ。。"],
+    "tip_e"     : ["You do not have enough LSK..",
                    "Oops!Can not send LSK.\nBecause You do not have enough LSK..",
                    "Oops!\nYou do not have enough LSK..",
                    "Sorry.\nCan not send LSK.\nBecause You do not have enough LSK..",
@@ -118,22 +117,24 @@ const message = {
                    "You do not seem to have enough LSK to send it..",
                    "Could not do it!\nPlease check your balance.",
                    "Did you enter a wrong value?\nIt seems to be more than your LSK."],
-    "withdrawDM_e": ["Sent {0}LSK to {1}.\n" +
-                     "Please confirm the approval status with Lisk Explorer etc.\n" +
-                     liskExplorer + "{2}"],
-    "withdrawError_e": ["You do not have enough LSK..",
-                        "Oops!Can not send LSK.\nBecause You do not have enough LSK..",
-                        "Oops!\nYou do not have enough LSK..",
-                        "Sorry.\nCan not send LSK.\nBecause You do not have enough LSK..",
-                        "Sorry.\nYou do not have enough LSK..",
-                        "You do not seem to have enough LSK to send it..",
-                        "Could not do it!\nPlease check your balance.",
-                        "Did you enter a wrong value?\nIt seems to be more than your LSK."],
-    "balanceDM_e": ["You have {0}!\nIf you transfer LSK to your Lisk address, a fee will be charged."],
-    "depositDM_e": ["When depositing LSK, please enter the issued KEY in the reference field of the transaction.\n" +
-                    "・KEY：{0}\n・ADDRESS：{1}\n\n" +
-                    "[Notes]\nIf you forget to enter the KEY or wrong it, I may not be able to cope."],
-    "howto": ["\n",
-              "\n\nhow to: https://lisknonanika.github.io/tiplisk/howto.html"]
+    "withdraw"  : ["残高不足のため出金できませんでした。",
+                   "残高不足です〜。",
+                   "残高が足りないよ～。",
+                   "出金できないみたい。\nLiskの手数料もあるから注意してね？",
+                   "出金できないみたい。\n出金時はLiskの手数料がかかるから注意してね？",
+                   "ごめんなさい！\n残高より多い枚数は出金できないんです！",
+                   "ん？間違っちゃいましたか？\n残高が足りないみたいですよ？",
+                   "出金したい枚数、持ってないみたいだよ？",
+                   "出金？\nムリムリ",
+                   "出金するにはちょーっと足りひんみたいやわぁ。。",
+                   "ごめんなぁ。。\n残高たりひんみたいやわぁ。。"],
+    "withdraw_e": ["You do not have enough LSK..",
+                   "Oops!Can not send LSK.\nBecause You do not have enough LSK..",
+                   "Oops!\nYou do not have enough LSK..",
+                   "Sorry.\nCan not send LSK.\nBecause You do not have enough LSK..",
+                   "Sorry.\nYou do not have enough LSK..",
+                   "You do not seem to have enough LSK to send it..",
+                   "Could not do it!\nPlease check your balance.",
+                   "Did you enter a wrong value?\nIt seems to be more than your LSK."]
 }
-define('message', message);
+define('errorMessage', errorMessage);
