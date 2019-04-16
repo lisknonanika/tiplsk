@@ -35,7 +35,8 @@ module.exports.getMessage = (type, params, isError) => {
   const messages = !isError? config.message[type]: config.errorMessage[type];
   let text = this.formatString(shuffle(messages, {'copy': true})[0], params);
   text = text + shuffle(config.message.howto, {'copy': true})[0];
-  text = text + `\nTime: ${this.getTimeString()}(UTC+9)`;
+  if (type.endsWith('_e')) text = text + `\nTime: ${this.getTimeString()}(UTC+9)`;
+  else text = text + `\n受付時刻: ${this.getTimeString()}`;
   if (config.mode === 'test') text = `${text}\n\n※Running on Testnet`;
   return text;
 }

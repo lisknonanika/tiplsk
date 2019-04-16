@@ -2,9 +2,10 @@ const tweet = require('../twitter/tweet');
 const dm = require('../twitter/dm');
 const config = require('../config');
 const utils = require('../utils');
+const request = require('../request');
 const cst = require('../const');
 
-module.exports = function(tweetInfo){
+module.exports = async(tweetInfo) =>{
     const commands = tweetInfo.text.match(config.regexp.withdraw)[0].trim().split(/\s+/);
     const twitterId = tweetInfo.user.id_str;
     const amount = commands[3];

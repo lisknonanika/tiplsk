@@ -1,6 +1,7 @@
 const dateformat = require('dateformat');
 const dm = require('../twitter/dm');
 const config = require('../config');
+const request = require('../request');
 const utils = require('../utils');
 const cst = require('../const');
 

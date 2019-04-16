@@ -1,4 +1,4 @@
-const limitCtrlCollection = require('../mongo/limitCtrl');
+const limitCtrlCollection = require('../db/limitCtrl');
 const config = require('../config');
 
 module.exports = async(text, replyId, replyUsers) => {

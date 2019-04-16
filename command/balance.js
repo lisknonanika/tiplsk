@@ -1,5 +1,6 @@
 const config = require('../config');
 const utils = require('../utils');
+const request = require('../request');
 const dm = require('../twitter/dm');
 const lisk2jpy = require('../api/lisk2jpy');
 
@@ -18,12 +19,12 @@ module.exports = async(tweetInfo) => {
     // 日本円換算
     let jpy = '';
     if (commands[1] === '残高' || commands[1] === '所持金') {
-        jpy = await lisk2jpy(amount);
+        jpy = await lisk2jpy(data.amount);
         jpy = `(約${jpy}円)`;
     }
 
     // メッセージ取得
-    const params = [`${amount}LSK${jpy}`];
+    const params = [`${data.amount}LSK${jpy}`];
     let text = '';
     if (commands[1].endsWith(':e')) text = utils.getMessage('balance_e', params);
     else text = utils.getMessage('balance', params);

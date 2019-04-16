@@ -1,5 +1,6 @@
 const tweet = require('../twitter/tweet');
 const config = require('../config');
+const request = require('../request');
 const lisk2jpy = require('../api/lisk2jpy');
 const utils = require('../utils');
 const cst = require('../const');
@@ -11,13 +12,13 @@ module.exports = async(tweetInfo, isReply) => {
     let recipientId = '';
     let targetNm = '';
     let amount = '0';
-    let isJPY = false;
+    let command = '';
     if (isReply) {
         const commands = tweetInfo.text.match(config.regexp.tip_s)[0].trim().split(/\s+/);
         recipientId = tweetInfo.in_reply_to_user_id_str;
         targetNm = tweetInfo.in_reply_to_screen_name;
         amount = commands[2];
-        isJPY = (commands[1] === 'チップ');
+        command = commands[1];
 
     } else {
         const commands = tweetInfo.text.match(config.regexp.tip)[0].trim().split(/\s+/);
@@ -28,7 +29,7 @@ module.exports = async(tweetInfo, isReply) => {
         }
         targetNm = commands[2].substring(1);
         amount = commands[3];
-        isJPY = (commands[1] === 'チップ');
+        command = commands[1];
     }
 
     // ブラックリスト判定
@@ -47,7 +48,7 @@ module.exports = async(tweetInfo, isReply) => {
     // 枚数が足りなかったらエラーメッセージをツイートして終了
     if (!utils.isEmpty(data.resultType) && data.resultType === cst.RETURN_TYPE_NOT_ENOUGH) {
         let text = '';
-        if((commands[1]).endsWith(":e")) text = utils.getMessage('tip_e', [], true);
+        if(command.endsWith(":e")) text = utils.getMessage('tip_e', [], true);
         else text = utils.getMessage('tip', [], true);
         tweet(text, replyId, [screenName]);
         return;
@@ -55,7 +56,7 @@ module.exports = async(tweetInfo, isReply) => {
 
     // 日本円換算
     let jpy = '';
-    if (isJPY) {
+    if (command === 'チップ') {
         jpy = await lisk2jpy(amount);
         jpy = `(約${jpy}円)`;
     }
@@ -63,7 +64,7 @@ module.exports = async(tweetInfo, isReply) => {
     // ツイート
     let params = [targetNm, screenName, `${amount}LSK${jpy}`];
     let text = '';
-    if((commands[1]).endsWith(":e")) text = utils.getMessage('tip_e', params);
+    if(command.endsWith(":e")) text = utils.getMessage('tip_e', params);
     else text = utils.getMessage('tip', params);
     tweet(text, replyId, [screenName, targetNm]);
 }
