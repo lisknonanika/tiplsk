@@ -1,0 +1,10 @@
+{
+    "name" : "checkFollow",
+    "script" : "../cron/cronCheckFollow.js",
+    "env" : {
+        "NODE_ENV" : "default"
+    },
+    "env_release" : {
+        "NODE_ENV" : "release"
+    }
+}
