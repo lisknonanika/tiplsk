@@ -13,6 +13,7 @@ const define = (name, value) => {
 // App Setting
 define('mode', config.mode);
 define('coreUrl', 'http://localhost:3000/core/');
+define('weburl', 'http://localhost:3000/web/');
 define('blacklist', ['1052365035895283712']);
 define('blacklistSource', ['PEING']);
 
@@ -39,7 +40,8 @@ const regexp = {
     "withdraw": new RegExp(/(^|\s+)(@|＠)tiplsk\s+(withdraw:e|withdraw|出金|送金)\s+[0-9]{1,}L\s+([1-9][0-9]{0,4}|0)(\.\d{1,8})?($|\s)/i),
     "followme": new RegExp(/(^|\s+)(@|＠)tiplsk\s+(followme|フォローして)($|\s)/i),
     "history": new RegExp(/(^|\s+)(@|＠)tiplsk\s+(history:e|history|履歴)($|\s)/i),
-    "webaccess": new RegExp(/(^|\s+)(@|＠)tiplsk\s+(webaccess:e|webaccess)($|\s)/i)
+    "webaccess": new RegExp(/(^|\s+)(@|＠)tiplsk\s+(webaccess:e|webaccess)($|\s)/i),
+    "resetpw": new RegExp(/(^|\s+)(@|＠)tiplsk\s+(resetpw:e|resetpw)($|\s)/i)
 }
 define('regexp', regexp);
 define('filter', {track: "@tiplsk,＠tiplsk"});
@@ -92,6 +94,10 @@ const message = {
                    "・KEY：{0}\n・ADDRESS：{1}\n\n" +
                    "[Notes]\nIf you forget to enter the KEY or wrong it, I may not be able to cope."],
     "receive"   : ["Confirmed your deposit of {0}LSK.\nPlease confirm the approval status with Lisk Explorer etc.\n" + liskExplorer + "{1}"],
+    "web"       : ["WEBサイトにアクセスする為の情報をお知らせします。\n[ID]\n{0}\n[PW]\n{1}\n[URL]\n{2}"],
+    "web_e"     : ["The information to access the website.\n[ID]\n{0}\n[PW]\n{1}\n[URL]\n{2}"],
+    "resetpw"   : ["パスワードをリセットしました。\n[PW]\n{0}"],
+    "resetpw_e" : ["Reset your password.\n[PW]\n{0}"],
     "howto"     : ["\n",
                    "\n\nhow to: https://lisknonanika.github.io/tiplisk/howto.html"]
 }

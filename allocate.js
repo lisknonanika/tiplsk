@@ -8,7 +8,8 @@ const deposit = require('./command/deposit');
 const withdraw = require('./command/withdraw');
 const followme = require('./command/followme');
 const history = require('./command/history');
-//const webaccess = require('./command/webaccess');
+const webaccess = require('./command/webaccess');
+const resetpw = require('./command/resetpw');
 
 module.exports = async(tweetInfo) => {
     // リツイートかブラックリスト登録されていたら終了
@@ -40,5 +41,6 @@ module.exports = async(tweetInfo) => {
     else if (config.regexp.withdraw.test(tweetInfo.text)) withdraw(tweetInfo);
     else if (config.regexp.followme.test(tweetInfo.text)) followme(tweetInfo);
     else if (config.regexp.history.test(tweetInfo.text)) history(tweetInfo);
-    //else if (config.regexp.webaccess.test(tweetInfo.text)) webaccess(tweetInfo);
+    else if (config.regexp.webaccess.test(tweetInfo.text)) webaccess(tweetInfo);
+    else if (config.regexp.resetpw.test(tweetInfo.text)) resetpw(tweetInfo);
 }
