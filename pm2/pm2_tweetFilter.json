@@ -1,6 +1,6 @@
 {
     "name" : "tweetFilter",
-    "script" : "./tweetFilter.js",
+    "script" : "tweetFilter.js",
     "env" : {
         "NODE_ENV" : "default"
     },
