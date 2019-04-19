@@ -1,6 +1,6 @@
 {
     "name" : "checkMention",
-    "script" : "../cron/cronCheckMention.js",
+    "script" : "./cron/cronCheckMention.js",
     "env" : {
         "NODE_ENV" : "default"
     },
