@@ -32,8 +32,13 @@ module.exports = async(tweetInfo, isReply) => {
         command = commands[1];
     }
 
-    // ブラックリスト判定
-    if (!recipientId || config.blacklist.indexOf(recipientId) >= 0) return;
+    // 処理キャンセル判定
+    if (!recipientId) {
+        // 送信先が自分
+        if (recipientId == twitterId) return;
+        // ブラックリストに登録
+        if (config.blacklist.indexOf(recipientId) >= 0) return;
+    }
 
     // チップ処理
     const data = await request({
