@@ -1,6 +1,6 @@
 {
     "name" : "checkFollow",
-    "script" : "../cron/cronCheckFollow.js",
+    "script" : "./cron/cronCheckFollow.js",
     "env" : {
         "NODE_ENV" : "default"
     },
