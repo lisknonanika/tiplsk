@@ -28,7 +28,7 @@ module.exports = async(tweetInfo) => {
         method: 'PUT',
         url: `${config.coreUrl}user`,
         headers: {'content-type': 'application/json'},
-        body: {twitterId: tweetInfo.id_str},
+        body: {twitterId: tweetInfo.user.id_str},
         json: true
     });
     if (!createUserResult.result) return;
