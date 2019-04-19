@@ -1,2 +1,2 @@
-const tweetFilter = require('./tweetFilter');
+const tweetFilter = require('../tweetFilter');
 tweetFilter();
