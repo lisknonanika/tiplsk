@@ -13,7 +13,7 @@ const define = (name, value) => {
 // App Setting
 define('mode', config.mode);
 define('coreUrl', 'http://localhost:3000/core/');
-define('weburl', 'http://localhost:3000/web/');
+define('weburl', 'https://tiplsk.com');
 define('blacklist', ['1052365035895283712']);
 define('blacklistSource', ['PEING']);
 
