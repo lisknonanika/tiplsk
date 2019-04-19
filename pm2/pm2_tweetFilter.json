@@ -1,6 +1,6 @@
 {
     "name" : "tweetFilter",
-    "script" : "tweetFilter.js",
+    "script" : "./cron/cronTweetFilter.js",
     "env" : {
         "NODE_ENV" : "default"
     },
