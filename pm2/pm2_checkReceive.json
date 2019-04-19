@@ -1,6 +1,6 @@
 {
     "name" : "checkReceive",
-    "script" : "../cron/cronCheckReceive.js",
+    "script" : "./cron/cronCheckReceive.js",
     "env" : {
         "NODE_ENV" : "default"
     },
