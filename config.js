@@ -99,7 +99,7 @@ const message = {
     "resetpw"   : ["パスワードをリセットしました。\n[PW]\n{0}"],
     "resetpw_e" : ["Reset your password.\n[PW]\n{0}"],
     "howto"     : ["\n",
-                   "\n\nhow to: https://lisknonanika.github.io/tiplisk/howto.html"]
+                   "\n\nhow to: https://lisknonanika.github.io/tiplsk-doc/howto.html"]
 }
 define('message', message);
 
