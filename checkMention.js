@@ -25,7 +25,7 @@ module.exports = async() => {
             if (sinceId === mentions[i].id_str) continue;
             sinceId = mentions[i].id_str;
             await mentionIdCollection.update({flg: 1}, {$set: {mentionId: sinceId, flg: 1}});
-            if (mentions[i].user.protected) await allocate(mentionData[i]);
+            if (mentions[i].user.protected) await allocate(mentions[i]);
         }
 
         // 指定件数より取得件数が少ない場合は終了
