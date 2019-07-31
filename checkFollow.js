@@ -33,13 +33,14 @@ const refleshFriendsCtrl = async() => {
 
 const updateFriendsCtrl = async() => {
     for (let twitterId of followers) {
-        if (twitterIds.indexOf(twitterId)) return;
-        const user = await userShow(twitterId);
-        if (user && user.protected && !user.following && !user.follow_request_sent) {
-            await follow(twitterId);
-            await friendsCollection.update({twitterId: twitterId}, {$set:{twitterId: twitterId, friend: 1}});
-        } else {
-            await friendsCollection.update({twitterId: twitterId}, {$set:{twitterId: twitterId, friend: 0}});
+        if (twitterIds.indexOf(twitterId) < 0) {
+            const user = await userShow(twitterId);
+            if (user && user.protected && !user.following && !user.follow_request_sent) {
+                await follow(twitterId);
+                await friendsCollection.update({twitterId: twitterId}, {$set:{twitterId: twitterId, friend: 1}});
+            } else {
+                await friendsCollection.update({twitterId: twitterId}, {$set:{twitterId: twitterId, friend: 0}});
+            }
         }
     }
 }
