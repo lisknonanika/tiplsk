@@ -4,6 +4,8 @@ const request = require('./request');
 const dm = require('./twitter/dm');
 
 module.exports = async() => {
+    if (new Date().getTime() >= new Date(2020,0,1).getTime()) return;
+    
     const data = await request({
         method: 'PUT',
         url: `${config.coreUrl}deposit`,
