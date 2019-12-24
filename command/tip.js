@@ -40,6 +40,15 @@ module.exports = async(tweetInfo, isReply) => {
         if (config.blacklist.indexOf(recipientId) >= 0) return;
     }
 
+    // 2020/1/1以降はチップ機能停止
+    if (new Date().getTime() >= new Date(2020,0,1).getTime()) {
+        let text = '';
+        if(command.endsWith(":e")) text = utils.getMessage('tip_exp_e', [], true);
+        else text = utils.getMessage('tip_exp', [], true);
+        tweet(text, replyId, [screenName]);
+        return;
+    }
+    
     // チップ処理
     const data = await request({
         method: 'PUT',
