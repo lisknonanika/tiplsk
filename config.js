@@ -141,6 +141,12 @@ const errorMessage = {
                    "Sorry.\nYou do not have enough LSK..",
                    "You do not seem to have enough LSK to send it..",
                    "Could not do it!\nPlease check your balance.",
-                   "Did you enter a wrong value?\nIt seems to be more than your LSK."]
+                   "Did you enter a wrong value?\nIt seems to be more than your LSK."],
+    "tip_exp"   : ["チップ機能は2020/01/01に停止しました。",
+                   "ごめんなさい！\nチップ機能は2020/01/01に停止しました。",
+                   "チップ機能は2020/01/01に停止しました。。\nごめんなさい＞＜"],
+    "tip_exp_e" : ["Tip was stopped on January 1, 2020.",
+                   "Sorry.\nTip was stopped on January 1, 2020.",
+                   "Tip was stopped on January 1, 2020..\nSorry."]
 }
 define('errorMessage', errorMessage);
